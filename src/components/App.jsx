@@ -3,7 +3,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
-
 function App() {
 
   const [titles, setTitles] = useState([]);
@@ -16,8 +15,6 @@ function App() {
     setContents(prevContents => {
       return [...prevContents, content];
     });
-    // console.log(titles);
-    // console.log(contents);
   }
 
   function deleteNote(id) {
