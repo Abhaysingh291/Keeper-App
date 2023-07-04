@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
@@ -7,6 +7,20 @@ function App() {
 
   const [titles, setTitles] = useState([]);
   const [contents, setContents] = useState([]);
+
+  useEffect(() => {
+    const storedTitles = localStorage.getItem("titles");
+    const storedContents = localStorage.getItem("contents");
+    if (storedTitles && storedContents) {
+      setTitles(JSON.parse(storedTitles));
+      setContents(JSON.parse(storedContents));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("titles", JSON.stringify(titles));
+    localStorage.setItem("contents", JSON.stringify(contents));
+  }, [titles, contents]);
 
   function addNote(title, content) {
     setTitles(prevTitles => {
